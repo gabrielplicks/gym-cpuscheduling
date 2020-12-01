@@ -43,14 +43,14 @@ class CPUSchedulingEnv(gym.Env):
         self.curr_priority = np.random.choice(self.PRIORITIES)
         self.curr_duration = np.random.choice(self.DURATIONS)
 
-        state = np.concatenate((self.cores, self.curr_priority, self.curr_duration))
+        state = np.concatenate((self.cores, np.array([self.curr_priority]), np.array([self.curr_duration])))
         return state, reward, False, {}
 
     def reset(self):
         self.cores = np.zeros(self.N_CORES)
         self.curr_priority = np.random.choice(self.PRIORITIES)
         self.curr_duration = np.random.choice(self.DURATIONS)
-        state = np.concatenate((self.cores, self.curr_priority, self.curr_duration))
+        state = np.concatenate((self.cores, np.array([self.curr_priority]), np.array([self.curr_duration])))
         return state
 
     def render(self):
